@@ -1,6 +1,8 @@
 
 # CCRD 中国当代政治运动史数据库
 
+## [GNU自由文档许可证 v1.3](GNU%20Free%20Documentation%20License%20v1.3%20-%20GNU%20Project%20-%20Free%20Software%20Foundation%20%28FSF%29.html)
+
 ### 目录说明
 
 ```
@@ -61,3 +63,7 @@ v3
 IDX是数据库id，例如0表示中国文化大革命文库。
 
 默认使用 http://127.0.0.1:1080 代理
+
+![](Title.png)
+
+![](CCRDC.jpg)

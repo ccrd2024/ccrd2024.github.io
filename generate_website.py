@@ -1,5 +1,6 @@
 import os,sys,markdown,re
 from natsort import natsorted, ns
+from bs4 import BeautifulSoup as bs
 l={}
 pa=sys.path[0]
 for a in os.walk(pa):
@@ -21,6 +22,8 @@ foi='''<svg aria-label="Directory" aria-hidden="true" height="16" viewBox="0 0 1
 fii='''<svg aria-label="File" aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-file color-fg-muted"><path d="M2 1.75C2 .784 2.784 0 3.75 0h6.586c.464 0 .909.184 1.237.513l2.914 2.914c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 13.25 16h-9.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h9.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 9 4.25V1.5Zm6.75.062V4.25c0 .138.112.25.25.25h2.688l-.011-.013-2.914-2.914-.013-.011Z"></path></svg>'''
 ht='''<html>
 <head>
+<title><!--TITLE--></title>
+<link rel="icon" type="image/x-icon" href="<!--ICO PATH-->">
 <style>a:link{color:#000000;text-decoration:none}a:hover{color:#0645ad;text-decoration:underline;}</style>
 </head>
 <body>
@@ -39,16 +42,29 @@ banned-historical-archives</a></span>
 <span></span>
 %s<a href='<!--FPRL.TXT-->' download>Fast Pure Raw Links.txt</a>
 <!--LOAD PATH-->
-<hr>
+<hr/>
 <!--LOAD LIST-->
-<hr>
+<hr/>
 <!--LOAD MD-->
+<hr/>
+<p><img src="<!--GFDL PATH-->"/><br>
+Copyright (C)  2024  Marxist-Leninist-Maoist.<br>
+Permission is granted to copy, distribute and/or modify this document under the terms of the GNU Free Documentation License, Version 1.3 or any later version published by the Free Software Foundation; with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts. A copy of the license is included in the section entitled "GNU Free Documentation License".</p>
 </body></html>'''%fii
 pp=sys.path[0]
 f=open('README.md','r');t=f.read();f.close()
 md=markdown.markdown(t,extensions=['fenced_code'])
 lp2=len('/'.join(sys.path[0].split('/')[:-1]))
 lpp=len(pp)
+def reimg(a,b):
+    s=bs(a,'html.parser')
+    im=s.find_all('img')
+    for c in im:
+        c['src']='%s/%s'%('/'.join(['..'for d in range(b)]),c['src'])
+    li=s.find_all('a')
+    for c in li:
+        c['href']='%s/%s'%('/'.join(['..'for d in range(b)]),c['href'])
+    return s.prettify()
 for a in l.keys():
     if not os.path.exists(rl:='%s/%s'%(pp,a[lp+1:]))and a!=pa:os.makedirs(rl)
     if a==pa:
@@ -64,6 +80,9 @@ for a in l.keys():
         ht2=ht2.replace('<!--INDEX.HTM-->','index.htm')
         ht2=ht2.replace('<!--FPRL.TXT-->','Fast Pure Raw Links.txt')
         ht2=ht2.replace('<!--LOAD MD-->',md)
+        ht2=ht2.replace('<!--TITLE-->','CCRD 中国当代政治运动史数据库')
+        ht2=ht2.replace('<!--ICO PATH-->','Emblem_of_the_PCP-Shining_Path.svg.ico')
+        ht2=ht2.replace('<!--GFDL PATH-->','GFDL-logo-small.png')
         print(a)
         f=open('index.htm','w+');f.write(ht2);f.close()
     else:
@@ -126,14 +145,17 @@ for a in l.keys():
             nas3=nas3.split('\n')
             try:
                 i=int(a.split('/')[-1])
-                t.append('<strong class="final-path">%s</strong><span class="mx-1">/</span>'%(nas3[i]))
+                t.append('<strong class="final-path">%s</strong><span class="mx-1">/</span>'%(tti:=nas3[i]))
             except:
-                t.append('<strong class="final-path">%s</strong><span class="mx-1">/</span>'%a.split('/')[-1])
+                t.append('<strong class="final-path">%s</strong><span class="mx-1">/</span>'%(tti:=a.split('/')[-1]))
         else:
-            t.append('<strong class="final-path">%s</strong><span class="mx-1">/</span>'%a.split('/')[-1])
+            t.append('<strong class="final-path">%s</strong><span class="mx-1">/</span>'%(tti:=a.split('/')[-1]))
         t='\n<span class="mx-1">/</span>\n'.join(t)
         ht2=ht2.replace('<!--LOAD PATH-->','<hr>\n%s'%t)
-        ht2=ht2.replace('<!--LOAD MD-->',md)
+        ht2=ht2.replace('<!--LOAD MD-->',reimg(md,lpas))
+        ht2=ht2.replace('<!--TITLE-->','%s - CCRD 中国当代政治运动史数据库'%tti)
+        ht2=ht2.replace('<!--ICO PATH-->','%sEmblem_of_the_PCP-Shining_Path.svg.ico'%'%s/'%'/'.join(['..'for z in range(lpas)]))
+        ht2=ht2.replace('<!--GFDL PATH-->','%sGFDL-logo-small.png'%'%s/'%'/'.join(['..'for z in range(lpas)]))
         print(a)
         f=open('%s/index.htm'%(a[lp+1:]),'w+');f.write(ht2);f.close()
 l={}
