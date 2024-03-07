@@ -15,7 +15,7 @@ for a in os.walk('HTML Old'):
             bd=s.find('body')
             #
             ti='%s%s - %s - CCRD 中国当代政治运动史数据库'%(clean(js['title']),
-                                                            clean2(' - %s'%','.join(js['authors'])if js['authors']else''),
+                                                            clean2(' - %s'%', '.join(js['authors'])if js['authors']else''),
                                                             js['date'])
             nhe=s.new_tag('head')
             nti=s.new_tag('title')
@@ -44,7 +44,11 @@ for a in os.walk('HTML Old'):
             slj.string=json.dumps(js)
             metati['content']=js['title']
             metada['content']=js['date']
-            metaau['content']=','.join(js['authors'])
+            metaau['content']=', '.join(js['authors'])
+            sdaau=s.new_tag('p')
+            author=', '.join(js['authors'])
+            sdaau.string='日期：%s 作者：%s'%(js['date'],author if author else'[待确定]')
+            s.find('h1').insert_after(sdaau)
             ti.insert_before(metati)
             ti.insert_before(metada)
             ti.insert_before(metaau)
