@@ -65,11 +65,3 @@ IDX是数据库id，例如0表示中国文化大革命文库。
 默认使用 http://127.0.0.1:1080 代理
 
 ![](Title.png)
-
-![](CCRDC.jpg)
-
-![](ARCDC.jpg)
-
-![](GLFC.jpg)
-
-![](CPC50SC.jpg)
