@@ -120,7 +120,7 @@ for a in ls:
         f=open(a[2],'r');ps=f.read();f.close()
         s=bs(ps,'html.parser')
         if(ss:=s.find('title')):
-            ti=ss.get_text()
+            ti=ss.get_text().strip()
             pc5=root.createElement('title')
             pc5.appendChild(root.createTextNode(ti))
             pc1.appendChild(pc5)
