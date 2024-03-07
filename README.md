@@ -1,7 +1,9 @@
 
 # CCRD 中国当代政治运动史数据库
 
-## [GNU自由文档许可证 v1.3](GNU%20Free%20Documentation%20License%20v1.3%20-%20GNU%20Project%20-%20Free%20Software%20Foundation%20%28FSF%29.html)
+## [[GNU自由文档许可证 v1.3]](GNU%20Free%20Documentation%20License%20v1.3%20-%20GNU%20Project%20-%20Free%20Software%20Foundation%20%28FSF%29.html)
+
+## [[CCRD 更多源数据获取]](https://ccrd2023.github.io/)
 
 ### 目录说明
 
