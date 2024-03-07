@@ -1,0 +1,10 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: Marxism-Leninism-Maoism News Web Crawler
+Upstream-Contact: Marxist-Leninist-Maoist <mlmaoist@proton.me>
+Source: https://mega.nz/folder/w2khhJyR#lSmvae0Y9trTux1GoM8o6A , https://ciangcing14.github.io/
+
+# Sample paragraph, commented out:
+#
+# Files: src/*
+# Copyright: $YEAR $NAME <$CONTACT>
+# License: ...
