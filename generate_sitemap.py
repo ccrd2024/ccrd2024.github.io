@@ -116,6 +116,7 @@ for a in ls:
     pc1.appendChild(pc2)
     pc1.appendChild(pc3)
     pc1.appendChild(pc4)
+    '''
     if a[2][-4:]=='.htm'or a[2][-5:]=='.html':
         f=open(a[2],'r');ps=f.read();f.close()
         s=bs(ps,'html.parser')
@@ -124,6 +125,7 @@ for a in ls:
             pc5=root.createElement('title')
             pc5.appendChild(root.createTextNode(ti))
             pc1.appendChild(pc5)
+    '''
     xml.appendChild(pc1)
     n+=1
 xml_str = root.toprettyxml(indent="    ", encoding="utf-8")
